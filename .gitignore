@@ -1,0 +1,56 @@
+# =====================================
+# Node & general environment
+# =====================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+dist/
+build/
+.DS_Store
+Thumbs.db
+
+# =====================================
+# VS Code & Editor configs
+# =====================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# =====================================
+# Extension / Build Artifacts
+# =====================================
+*.zip
+*.crx
+*.xpi
+*.pem
+
+# Firefox build output
+web-ext-artifacts/
+
+manifest.*.json
+test-output/
+coverage/
+*.log
+
+# =====================================
+# Local environment / OS files
+# =====================================
+.env
+.env.*
+*.local
+*.old
+*.orig
+
+# =====================================
+# Cache files
+# =====================================
+.cache/
+.temp/
+tmp/
+*.lock
+__pycache__/

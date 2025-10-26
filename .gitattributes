@@ -1,0 +1,57 @@
+# =====================================
+# Default behavior
+# =====================================
+# Use LF (Unix-style) line endings for all text files
+* text=auto eol=lf
+* encoding=utf-8
+
+# =====================================
+# OS / Tooling compatibility
+# =====================================
+# Always normalize line endings for the following types
+*.js      text eol=lf
+*.json    text eol=lf
+*.html    text eol=lf
+*.css     text eol=lf
+*.md      text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.sh      text eol=lf
+*.ts      text eol=lf
+
+# =====================================
+# Mark binary files
+# =====================================
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.zip     binary
+*.crx     binary
+*.xpi     binary
+*.pem     binary
+*.pdf     binary
+*.xlsx    binary
+*.mp4     binary
+*.webp    binary
+*.woff    binary
+*.woff2   binary
+*.ttf     binary
+*.eot     binary
+
+# =====================================
+# Keep consistent diff/merge behavior
+# =====================================
+*.lock    text
+*.env     text
+*.example text
+LICENSE   text
+README.md text
+
+# =====================================
+# GitHub linguist tweaks (optional)
+# =====================================
+# Treat certain folders as vendored (ignored in language stats)
+libs/* linguist-vendored
+assets/* linguist-vendored
