@@ -1,53 +1,51 @@
-# TabSync – Local Browser Sync (Extension)
+<p align="center">
+  <img src="/src/icons/icon128.png" width="80" />
+  <h2 align="center">TabSync – Local Browser Sync (Extension)</h2>
+  <p align="center">
+   <b>TabSync Extension</b> automatically shares your open browser tabs with the local <b>TabSync CLI or electron based desktop app</b> server — no internet, no cloud, just your Wi-Fi.  
+  </p>
+</p>
 
-**TabSync Extension** automatically shares your open browser tabs with the local **TabSync CLI** server — no internet, no cloud, just your Wi-Fi.  
-It’s the companion extension for the [`tabsync-cli`](https://www.npmjs.com/package/tabsync-cli) CLI/[`source`](https://github.com/jayantur13/tabsync-cli).
+## Must download one companion
+
+- Nodejs [`tabsync-cli`](https://www.npmjs.com/package/tabsync-cli) [`tabsync-cli source`](https://github.com/jayantur13/tabsync-cli).
+- Electron based [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
 
 ---
 
-## What It Does
+## Features
 
 - Detects all open tabs in your browser.
-- Connects automatically to your **local TabSync server** (`http://localhost:3210`).
+- Connects automatically to your **local TabSync server** (`http://localhost:port`).
 - Syncs tab titles and URLs in real time over WebSocket.
 - Updates instantly when you:
   - Open a new tab
   - Close a tab
   - Switch or reload a tab
 
-On your desktop or mobile browser, you’ll see all connected devices and their open tabs live — no refresh needed.
+On your desktop or mobile browser, you’ll see all connected devices and their open tabs live realtime
 
 ---
 
-## How It Works
+## Screenshot
 
-The extension runs a lightweight background script:
+![tabsync-screenshot](/src/other/ss1.png "TBSS")
 
-```js
-const SERVER = `ws://<your-local-ip>:<wsPort>`;
-ws = new WebSocket(SERVER);
-
-ws.onopen = () => {
-  sendTabs();
-  setInterval(sendTabs, 60000);
-};
-
-chrome.tabs.onUpdated.addListener(sendTabs);
-chrome.tabs.onRemoved.addListener(sendTabs);
-chrome.tabs.onCreated.addListener(sendTabs);
-```
+---
 
 ## Requirements
 
-- You must have the TabSync Local server running:
+- You must have the TabSync Local server installed either via:
 
 ```bash
 npm install -g tabsync-cli
 ```
 
-Once started, it’ll show a local URL (e.g. http://192.168.x.x:3210) and a QR code to open on other devices.
+- Or, downlaod and use the electron based tabsync-desktop app from [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
 
-- The extension connects automatically to that local server via http://localhost:3210/ip.
+> Once started, it’ll show a local URL (e.g. http://192.168.x.x:port) and a QR code to open on other devices.
+
+> The extension connects automatically to that local server via http://localhost:port/ip.
 
 ## Installation
 
@@ -64,12 +62,12 @@ Once started, it’ll show a local URL (e.g. http://192.168.x.x:3210) and a QR c
 If you see:
 
 ```bash
-TabSync Local: could not find server
+TabSync Local: could not find server on port xxxx
 ```
 
 Make sure:
 
-- The local server (tabsync) is running.
+- The local server (tabsync) is running (via CLI or the electron app).
 - You opened the extension on the same machine or network as the server.
 - The port (3210 by default) is not blocked by a firewall.
 

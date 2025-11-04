@@ -1,10 +1,14 @@
 {
     "manifest_version": 3,
     "name": "TabSync - Local Browser Sync",
-    "version": "1.0",
+    "version": "1.0.0",
     "description": "Sync open tabs with local TabSync server.",
+    "host_permissions": ["http://localhost/*", "ws://localhost/*"],
+    "default_locale": "en",
     "permissions": [
-        "tabs"
+        "tabs",
+        "storage",
+        "scripting"
     ],
     "icons": {
         "16": "src/icons/icon16.png",
@@ -16,6 +20,7 @@
         "service_worker": "background.js"
     },
     "action": {
+        "default_popup": "popup/options.html",
         "default_title": "TabSync - Local Browser Sync"
     }
 }
