@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "description": "Sync open tabs with local TabSync server.",
     "host_permissions": ["http://localhost/*", "ws://localhost/*"],
-    "default_locale": "en",
     "permissions": [
         "tabs",
         "storage",
