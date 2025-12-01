@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "TabSync - Local Browser Sync",
-    "version": "1.0.0",
-    "description": "Sync open tabs with local TabSync server.",
+    "version": "1.0.1",
+    "description": "Sync browser tabs locally using tabsync cli or electron-app",
     "host_permissions": ["http://localhost/*", "ws://localhost/*"],
     "permissions": [
         "tabs",

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!port) return alert("Enter a valid port number!");
 
     await chrome.storage.local.set({ serverPort: port });
-    status.textContent = `Extension will now reconnect...`;
+    status.textContent = `Extension will try to connect if server is running`;
     alert(`Successfully saved port (${port})!`);
     setTimeout(() => (status.textContent = ""), 3000);
 

@@ -8,8 +8,15 @@
 
 ## Must download one companion
 
-- Nodejs [`tabsync-cli`](https://www.npmjs.com/package/tabsync-cli) [`tabsync-cli source`](https://github.com/jayantur13/tabsync-cli).
-- Electron based [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
+1. Electron based [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop/releases)
+2. Install
+```bash
+  npm install -g tabsync-cli 
+  or
+  pip install tabsync-cli
+```
+
+> Source for[`tabsync-cli`](https://github.com/jayantur13/tabsync-cli).
 
 ---
 
@@ -23,13 +30,14 @@
   - Close a tab
   - Switch or reload a tab
 
-On your desktop or mobile browser, you’ll see all connected devices and their open tabs live realtime
+On your desktop or mobile browser, you’ll see all connected devices and their open tabs live real-time
 
 ---
 
 ## Screenshot
 
-![tabsync-screenshot](/src/other/ss1.png "TBSS")
+![tabsync-screenshot](/src/other/ss1.png "TBSS1")
+![tabsync-screenshot](/src/other/ss2.png "TBSS2")
 
 ---
 
@@ -39,9 +47,11 @@ On your desktop or mobile browser, you’ll see all connected devices and their 
 
 ```bash
 npm install -g tabsync-cli
-```
+or 
+pip install tabsync-cli
+````
 
-- Or, downlaod and use the electron based tabsync-desktop app from [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
+- Or, downlaod and use the electron based tabsync-desktop app from [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop/releases)
 
 > Once started, it’ll show a local URL (e.g. http://192.168.x.x:port) and a QR code to open on other devices.
 
