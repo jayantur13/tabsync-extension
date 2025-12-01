@@ -6,17 +6,33 @@
   </p>
 </p>
 
-## Must download one companion
+## Quick Note
 
-1. Electron based [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop/releases)
-2. Install
+Download extension and alternative of CLI (Windows,Linux)
+
+<table>
+  <tr>
+    <td>
+      <a href="https://microsoftedge.microsoft.com/addons/detail/tabsync-local-browser-s/hnfbmkdiaonenacjogpccahkckbfkjfj" target="_blank">
+        <img src="/src/other/edge-store.png" width="236" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/jayantur13/tabsync-desktop/releases" target="_blank">
+        <img src="/src/other/github-release.png" width="236" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+- For CLI do
 ```bash
   npm install -g tabsync-cli 
   or
   pip install tabsync-cli
 ```
-
-> Source for[`tabsync-cli`](https://github.com/jayantur13/tabsync-cli).
+- Source for [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
+- Source for[`tabsync-cli`](https://github.com/jayantur13/tabsync-cli)
 
 ---
 
