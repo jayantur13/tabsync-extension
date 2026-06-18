@@ -1,0 +1,22 @@
+{
+  "name": "tabsync",
+  "version": "1.0.1",
+  "description": "Sync browser tabs instantly between desktop and any other device over local Wi-Fi - no cloud needed.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "sync", "remote-sync", "browser-sync", "local-sync", "bookmarks"
+  ],
+  "author": "Jayant Navrange",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2",
+    "qrcode-terminal": "^0.12.0",
+    "ws": "^8.21.0"
+  }
+}

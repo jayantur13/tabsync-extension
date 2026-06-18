@@ -6,34 +6,31 @@
   </p>
 </p>
 
-## Quick Note
+##  Requirements
 
-Download extension and alternative of CLI (Windows,Linux)
+- Mandatory: Download Extension
 
-<table>
-  <tr>
-    <td>
-      <a href="https://microsoftedge.microsoft.com/addons/detail/tabsync-local-browser-s/hnfbmkdiaonenacjogpccahkckbfkjfj" target="_blank">
-        <img src="/src/other/edge-store.png" width="236" />
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/jayantur13/tabsync-desktop/releases" target="_blank">
-        <img src="/src/other/github-release.png" width="236" />
-      </a>
-    </td>
-  </tr>
-</table>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/tabsync-local-browser-s/hnfbmkdiaonenacjogpccahkckbfkjfj" target="_blank">
+    <img src="/store/edge-store.png" width="236" />
+  </a>
 
-- For CLI do
+- Option 1. Download a Simple CLI
+
 ```bash
   npm install -g tabsync-cli 
   or
-  pip install tabsync-cli
+  pip install tabsync-cli (planned)
 ```
-- Source for [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop)
-- Source for[`tabsync-cli`](https://github.com/jayantur13/tabsync-cli)
+> Source[`tabsync-cli`](https://github.com/jayantur13/tabsync-cli)
 
+- Option 2. Download Desktop App
+
+<a href="https://github.com/jayantur13/tabsync-desktop/releases" target="_blank">
+  <img src="/store/github-release.png" width="236" />
+</a>
+
+> Source[`tabsync-extension`](https://github.com/jayantur13/tabsync-desktop)
+   
 ---
 
 ## Features
@@ -57,21 +54,19 @@ On your desktop or mobile browser, you’ll see all connected devices and their 
 
 ---
 
-## Requirements
+## Quick Start
 
-- You must have the TabSync Local server installed either via:
+- Open TabSync CLI:
 
 ```bash
-npm install -g tabsync-cli
-or 
-pip install tabsync-cli
+tabsync
 ````
 
-- Or, downlaod and use the electron based tabsync-desktop app from [`tabsync-desktop`](https://github.com/jayantur13/tabsync-desktop/releases)
+> Once started, it’ll show a local URL (e.g. http://192.168.x.x:port) and a QR code to open on other devices, visit the local url to see curently opened tabs.
 
-> Once started, it’ll show a local URL (e.g. http://192.168.x.x:port) and a QR code to open on other devices.
+- Or, open the tabsync-desktop app:
 
-> The extension connects automatically to that local server via http://localhost:port/ip.
+> Once started, it’ll show a local URL (e.g. http://192.168.x.x:port), a form and tabs open currently in edge browser.
 
 ## Installation
 
@@ -80,8 +75,7 @@ pip install tabsync-cli
 - Turn on Developer Mode (top right).
 - Click Load unpacked and select the folder containing:
 - Start your tabsync server from the terminal.
-- Watch your desktop tabs appear instantly in the TabSync dashboard.
-  > Else use [`releases`](https://github.com/jayantur13/tabsync-extension/releases) to download file
+- Download from store or else check [`releases`](https://github.com/jayantur13/tabsync-extension/releases) to download file
 
 ## Troubleshooting
 

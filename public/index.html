@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TabSync Local</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #f7f9fb;
+        color: #222;
+        margin: 0;
+        padding: 1rem;
+      }
+      h2 {
+        margin-top: 0;
+        text-align: center;
+      }
+      #devices {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .device {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+      }
+      .tabs a {
+        display: block;
+        text-decoration: none;
+        color: #0077cc;
+        margin: 4px 0;
+        border-left: 3px solid #302b2b;
+        padding-left: 6px;
+        word-break: break-all;
+      }
+      .tabs a:hover {
+        text-decoration: underline;
+      }
+      #addUrlForm {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+        justify-content: center;
+      }
+      input {
+        flex: 1;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background: #0077cc;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #005fa3;
+      }
+      #status {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🧩 TabSync Local</h2>
+
+    <form id="addUrlForm">
+      <input type="text" id="urlInput" placeholder="Paste a URL to sync..." />
+      <button type="submit">Add</button>
+    </form>
+
+    <div id="status">Connecting...</div>
+
+    <div id="devices"></div>
+
+    <script>
+      let deviceId =
+        localStorage.getItem("deviceId") ||
+        `device-${Math.random().toString(36).slice(2, 8)}`;
+      localStorage.setItem("deviceId", deviceId);
+
+      let ws;
+      let serverIP = null;
+      const devicesDiv = document.getElementById("devices");
+      const statusEl = document.getElementById("status");
+
+      async function init() {
+        const res = await fetch("/ip");
+        const data = await res.json();
+        serverIP = data.ip;
+        const wsUrl = `ws://${data.ip}:${data.wsPort}`;
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => (statusEl.textContent = "✅ Connected");
+        ws.onclose = () => (statusEl.textContent = "⚠️ Disconnected");
+        ws.onmessage = (e) => renderDevices(JSON.parse(e.data));
+      }
+
+      function renderDevices(devices) {
+        devicesDiv.innerHTML = "";
+        for (const [id, tabs] of Object.entries(devices)) {
+          const deviceEl = document.createElement("div");
+          deviceEl.className = "device";
+          const title =
+            id === deviceId ? `💻 ${id} (You)` : id.startsWith("device-") ? `📱 ${id}` : id;
+          deviceEl.innerHTML = `<h3>${title}</h3><div class="tabs"></div>`;
+          const tabsDiv = deviceEl.querySelector(".tabs");
+
+          tabs.forEach((tab) => {
+            const a = document.createElement("a");
+            a.href = tab.url;
+            a.target = "_blank";
+            a.textContent = tab.title || tab.url;
+            tabsDiv.appendChild(a);
+          });
+          devicesDiv.appendChild(deviceEl);
+        }
+      }
+
+      // Handle Add URL form
+      document
+        .getElementById("addUrlForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const urlInput = document.getElementById("urlInput");
+          let url = urlInput.value.trim();
+          if (!url) return;
+
+          if (!url.startsWith("http")) url = "https://" + url;
+
+          try {
+            const res = await fetch("/add", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ deviceId, url }),
+            });
+            const data = await res.json();
+            if (data.success) {
+              statusEl.textContent = `✅ Added: ${data.title}`;
+              urlInput.value = "";
+            } else {
+              statusEl.textContent = "❌ Failed to add URL";
+            }
+          } catch {
+            statusEl.textContent = "⚠️ Server not reachable";
+          }
+        });
+
+      init();
+    </script>
+  </body>
+</html>

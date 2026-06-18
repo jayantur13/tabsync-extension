@@ -2,6 +2,8 @@ let ws;
 let DEVICE_ID = "Desktop";
 let retryTimeout = 5000; // 5s retry
 let isConnecting = false;
+let intervalId = null;
+let listenersRegistered = false;
 
 init();
 
@@ -25,15 +27,29 @@ async function tryConnect(port) {
     ws.onopen = () => {
       console.log("✅ Connected to TabSync server");
       sendTabs();
-      setInterval(sendTabs, 60000);
-      chrome.tabs.onUpdated.addListener(sendTabs);
-      chrome.tabs.onRemoved.addListener(sendTabs);
-      chrome.tabs.onCreated.addListener(sendTabs);
+      if (!intervalId) {
+        intervalId = setInterval(sendTabs, 60000);
+      }
+      if (!listenersRegistered) {
+        chrome.tabs.onRemoved.addListener(sendTabs);
+        chrome.tabs.onCreated.addListener(sendTabs);
+        chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+          if (
+            changeInfo.status === "complete" ||
+            changeInfo.url
+          ) {
+            sendTabs();
+          }
+        });
+
+        listenersRegistered = true;
+      }
       isConnecting = false;
     };
 
     ws.onclose = () => {
       console.warn("❌ Disconnected from TabSync server. Retrying...");
+      isConnecting = false;
       setTimeout(() => tryConnect(port), retryTimeout);
     };
 
@@ -71,3 +87,16 @@ chrome.runtime.onMessage.addListener((msg) => {
     init(); // will read new port and reconnect
   }
 });
+
+chrome.runtime.onSuspend.addListener(() => {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(
+      JSON.stringify({
+        deviceId: DEVICE_ID,
+        tabs: [],
+      })
+    );
+  }
+});
+
+
