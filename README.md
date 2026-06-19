@@ -11,7 +11,7 @@
 - Mandatory: Download Extension
 
   <a href="https://microsoftedge.microsoft.com/addons/detail/tabsync-local-browser-s/hnfbmkdiaonenacjogpccahkckbfkjfj" target="_blank">
-    <img src="/store/edge-store.png" width="236" />
+    <img src="/src/other/edge-store.png" width="236" />
   </a>
 
 - Option 1. Download a Simple CLI
@@ -26,7 +26,7 @@
 - Option 2. Download Desktop App
 
 <a href="https://github.com/jayantur13/tabsync-desktop/releases" target="_blank">
-  <img src="/store/github-release.png" width="236" />
+  <img src="/src/other/github-release.png" width="236" />
 </a>
 
 > Source[`tabsync-extension`](https://github.com/jayantur13/tabsync-desktop)
