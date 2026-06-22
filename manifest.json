@@ -6,8 +6,7 @@
     "host_permissions": ["http://localhost/*", "ws://localhost/*"],
     "permissions": [
         "tabs",
-        "storage",
-        "scripting"
+        "storage"
     ],
     "icons": {
         "16": "src/icons/icon16.png",
